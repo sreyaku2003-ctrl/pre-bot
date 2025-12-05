@@ -15,20 +15,16 @@ import logging
 
 
 
+
 app = Flask(__name__)
 CORS(app)
 
-
-
-#@app.route("/")
-#def home():
-    #return render_template("index.html")
-    
-if __name__ == "__main__":
-
-    @app.route("/")
-    def home():
-        return render_template("index.html")
+# ---------------------------
+# HOME ROUTE (UI)
+# ---------------------------
+@app.route("/")
+def home():
+    return render_template("index.html")
     CORS(app)
 # Comprehensive Knowledge Base for IVRM Pre-Admission Module
 KNOWLEDGE_BASE = {
@@ -1333,3 +1329,4 @@ def chat_api():
 
 if __name__ == "__main__":
     app.run(debug=True, port=5001)
+
