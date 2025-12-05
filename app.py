@@ -448,7 +448,7 @@ Use Document View anytime to see your form. Check Preadmission Status frequently
 }
 
 import nltk
-nltk.data.path.insert(0, 'P:/nltk_data')
+nltk.data.path.append("nltk_data")
 
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
