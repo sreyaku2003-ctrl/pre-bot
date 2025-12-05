@@ -448,7 +448,13 @@ Use Document View anytime to see your form. Check Preadmission Status frequently
 }
 
 import nltk
-nltk.data.path.append("nltk_data")
+
+# Automatically download needed NLTK corpora if not already present
+nltk.download('punkt')       # for word_tokenize
+nltk.download('stopwords')   # for stopwords
+nltk.download('wordnet')  
+nltk.download('punkt_tab')
+   # for lemmatization
 
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
@@ -1326,4 +1332,4 @@ def chat_api():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5000)
+    app.run(debug=True, port=5001)
