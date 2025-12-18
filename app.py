@@ -15,6 +15,7 @@ import logging
 
 
 
+
 app = Flask(__name__)
 CORS(app)
 
@@ -23,13 +24,9 @@ CORS(app)
 #@app.route("/")
 #def home():
     #return render_template("index.html")
-    
-if __name__ == "__main__":
-
-    @app.route("/")
-    def home():
-        return render_template("index.html")
-    CORS(app)
+@app.route("/")
+def home():
+    return render_template("index.html")
 # Comprehensive Knowledge Base for IVRM Pre-Admission Module
 KNOWLEDGE_BASE = {
     # NEW FAQ SECTIONS
@@ -1891,13 +1888,7 @@ def get_process_flow():
 
 
 # Health-check / root quick page (optional friendly text)
-@app.route('/', methods=['GET'])
-def root_page():
-    return (
-        "<h3>IVRM Pre-Admission Chatbot API</h3>"
-        "<p>Use <code>/api/chatbot/message</code> POST to talk to the bot. "
-        "See <code>/api/health</code> and <code>/api/chatbot/greeting</code>.</p>"
-    )
+
 @app.route("/api/chat", methods=["POST"])
 def chat_api():
     data = request.json
@@ -1923,3 +1914,4 @@ def chat_api():
 
 if __name__ == "__main__":
     app.run(debug=True, port=5000)
+
