@@ -15,20 +15,628 @@ import logging
 
 
 
-
 app = Flask(__name__)
 CORS(app)
 
-# ---------------------------
-# HOME ROUTE (UI)
-# ---------------------------
-@app.route("/")
-def home():
-    return render_template("index.html")
+
+
+#@app.route("/")
+#def home():
+    #return render_template("index.html")
+    
+if __name__ == "__main__":
+
+    @app.route("/")
+    def home():
+        return render_template("index.html")
     CORS(app)
 # Comprehensive Knowledge Base for IVRM Pre-Admission Module
 KNOWLEDGE_BASE = {
-    # APPLICATION FORM PAGE
+    # NEW FAQ SECTIONS
+    "startAdmissionProcess": {
+        "keywords": [
+            "start admission", "begin admission", "how to start", 
+            "start process", "initiate admission", "first step",
+            "how do i start", "where to start", "begin process",
+            "starting admission", "admission for my child"
+        ],
+        "responses": [
+            """To start the admission process for your child, follow these steps:
+
+**Step 1: Fill the Application Form**
+• Go to the Application Form page
+• Fill all mandatory fields marked with *
+• Include student details: name, DOB, class, contact info
+• Add parent/guardian information
+• Upload student photo and required documents
+
+**Step 2: Complete Health Form (Mandatory)**
+• Fill health details on the right side after submitting application
+• Provide chronic disease info, preferred hospital, emergency contact
+• Accept health declaration
+
+**Step 3: Verify Details**
+• Review all information in the Registration page
+• Make corrections if needed
+
+**Step 4: Wait for Interview Schedule**
+• School will assign oral and written test dates
+• Check Interview Schedule section regularly
+
+You can start right away by accessing the Application Form page!""",
+            """Starting the admission process is simple:
+
+1. **Begin with Application Form** - Fill student and parent details completely
+2. **Submit Health Form** - Mandatory medical information
+3. **Verify in Registration** - Double-check all details
+4. **Attend scheduled interviews** - Oral and Written tests
+5. **Track your status** - Monitor in Preadmission Status page
+
+The first step is to access the Application Form and start filling your child's information. All mandatory fields must be completed before submission."""
+        ]
+    },
+
+    "findOnlineForm": {
+        "keywords": [
+            "find form", "online form", "where is form", "locate form",
+            "find application form", "where to apply", "online admission form",
+            "application form location", "where can i find", "form page"
+        ],
+        "responses": [
+            """You can find the online admission form in the **Application Form** section of the pre-admission portal.
+
+**How to Access:**
+1. Log into the pre-admission portal
+2. Navigate to "Application Form" in the main menu
+3. The form will appear with sections for student details, parent details, and document upload
+
+**What you'll need ready:**
+• Student's basic information (name, DOB, class applying for)
+• Residential and permanent addresses
+• Parent/Guardian details and contact numbers
+• Student photo (JPG/PNG, max 2MB)
+• Required documents for upload
+
+The Application Form is the starting point of your admission journey!""",
+            """The online admission form is located in the **Application Form page** of the pre-admission module.
+
+Simply:
+• Access the pre-admission portal
+• Click on "Application Form" section
+• Fill all mandatory fields marked with asterisk (*)
+• Upload required documents
+• Submit to proceed to Health Form
+
+Both Application Form and Health Form are online and must be completed sequentially."""
+        ]
+    },
+
+    "fullyOnlineProcess": {
+        "keywords": [
+            "completely online", "fully online", "online process",
+            "is it online", "online admission", "digital process",
+            "remote admission", "no physical visit", "everything online"
+        ],
+        "responses": [
+            """The admission process has **both online and offline components**:
+
+**Online Components:**
+✅ Application Form submission
+✅ Health Form submission
+✅ Document uploads (student photo, certificates)
+✅ Registration and verification
+✅ Status tracking (Application & Admission Status)
+✅ Interview schedule checking
+✅ Marks viewing
+✅ Report downloads
+
+**Offline/Physical Components:**
+❗ Oral Test (Interview) - Must attend in person at assigned venue
+❗ Written Test (Entrance Exam) - Must attend in person
+❗ Document verification during interview (original documents)
+❗ Final admission formalities (if selected)
+
+While the application and tracking are fully online, **you will need to visit the school for scheduled interviews and tests**.""",
+            """The admission process is **mostly online** with some in-person requirements:
+
+**What's Online:**
+• Filling and submitting forms
+• Uploading documents
+• Checking schedules and status
+• Viewing marks and reports
+
+**What Requires Physical Presence:**
+• Attending Oral Test (Interview)
+• Attending Written Test (Entrance Exam)
+• Original document verification
+• Final admission procedures (if confirmed)
+
+So while you can apply and track everything online, interviews and tests must be attended at the school."""
+        ]
+    },
+
+    "multipleChildren": {
+        "keywords": [
+            "multiple children", "more than one child", "two children",
+            "several children", "siblings", "multiple applications",
+            "apply for two", "both my children", "multiple kids"
+        ],
+        "responses": [
+            """**Yes, you can apply for multiple children**, but you need to submit **separate applications for each child**.
+
+**Process for Multiple Children:**
+
+1. **Create separate Application Forms**
+   • Fill one complete application per child
+   • Each child gets their own registration
+
+2. **Complete individual Health Forms**
+   • Each child needs their own health information
+   • Separate emergency contacts can be provided
+
+3. **Separate Interview Schedules**
+   • Each child will have their own oral and written test schedules
+   • May be on different dates/times
+
+4. **Individual Status Tracking**
+   • Track each child's Application Status separately
+   • Each child's Admission Status is independent
+
+5. **Separate Documentation**
+   • Upload each child's photo and documents separately
+   • Keep track of each application number
+
+**Tip:** You can use the same parent/guardian contact details for all applications, but student information must be unique for each child.""",
+            """You can apply for multiple children by submitting **individual applications for each child**.
+
+**Important Points:**
+• Each child needs a separate Application Form
+• Each child must complete their own Health Form
+• Individual interview schedules will be assigned
+• Track each child's status independently
+• Use the same parent login but separate student profiles
+
+**Why Separate Applications?**
+• Each child has unique educational needs
+• Different classes may have different requirements
+• Individual assessment through oral and written tests
+• Separate admission decisions
+
+Submit one complete application per child through the Application Form page."""
+        ]
+    },
+
+    "admissionDates": {
+        "keywords": [
+            "admission dates", "deadlines", "important dates",
+            "last date", "application deadline", "when to apply",
+            "admission schedule", "closing date", "academic calendar",
+            "admission timeline"
+        ],
+        "responses": [
+            """Important admission dates and deadlines are typically displayed in:
+
+**Where to Find Dates:**
+
+1. **School Website/Portal Homepage**
+   • Academic year admission calendar
+   • Application opening and closing dates
+
+2. **Application Form Page**
+   • Deadline information at the top
+   • Academic year selection shows relevant dates
+
+3. **Interview Schedule Section**
+   • Oral test dates assigned
+   • Written test dates assigned
+
+4. **Reports Section - Prospectus Report**
+   • Download the school prospectus
+   • Contains complete admission timeline
+
+**Typical Timeline (Example):**
+• Application Period: January - March
+• Interview Scheduling: 5-7 days after application
+• Oral & Written Tests: Within 2-3 weeks
+• Results & Selection: 1-2 weeks after tests
+• Final Admission Confirmation: End of March/April
+
+**Important:** Check the portal regularly and note your personalized interview dates in the Interview Schedule section!""",
+            """To find admission dates and deadlines:
+
+**Check These Sections:**
+
+1. **Portal Dashboard/Homepage**
+   • Current admission session dates
+   • Application deadline countdown
+
+2. **Prospectus Report (Reports Section)**
+   • Download school prospectus
+   • Contains full academic calendar
+   • All important dates listed
+
+3. **Schedule Report (Reports Section)**
+   • View all scheduled activities
+   • Interview dates and timelines
+
+4. **Your Personal Schedule**
+   • Check Interview Schedule section
+   • Your specific oral and written test dates
+
+**Pro Tip:** Don't wait until the deadline! Apply early to secure your child's interview slot. The admission committee reviews applications on a rolling basis."""
+        ]
+    },
+
+    "applicationSubmitted": {
+        "keywords": [
+            "application submitted", "successfully submitted", 
+            "confirm submission", "submitted successfully",
+            "how to know", "check if submitted", "submission confirmation",
+            "did my application submit", "verify submission"
+        ],
+        "responses": [
+            """You can confirm your application was successfully submitted by checking:
+
+**Immediate Confirmation:**
+1. **Success Message on Screen**
+   • After clicking Submit on Application Form
+   • Success popup/message confirms submission
+   • Note your application number if displayed
+
+2. **Health Form Appears**
+   • The Health Form section becomes active on the right side
+   • This only appears after successful application submission
+
+**Verification Methods:**
+
+3. **Registration Page**
+   • Go to Registration page
+   • Select Academic Year and Class
+   • Your submitted application will be displayed
+   • All details you entered will be visible
+
+4. **Document View**
+   • Access Document View section
+   • Select year and class
+   • Your application form will appear if submitted
+
+5. **Preadmission Status**
+   • Check Application Status section
+   • Status will show "Application Waiting" (under review)
+   • If you see this, your application is successfully in the system
+
+**No Confirmation?** 
+If you don't see your application in Registration or Document View, it may not have been submitted. Try resubmitting the Application Form.""",
+            """To verify your application was successfully submitted:
+
+✅ **Immediate Signs:**
+• Success message appears after clicking Submit
+• Health Form section opens on the right side
+• Application number may be displayed
+
+✅ **Check Registration Page:**
+• Navigate to Registration section
+• Select your academic year and class
+• Your complete application should be visible
+
+✅ **Check Preadmission Status:**
+• Go to Preadmission Status page
+• Application Status should show "Application Waiting"
+• This means your application is under review
+
+✅ **Document View:**
+• Access Document View
+• Select year and class
+• Your submitted form should appear
+
+If you cannot find your application in any of these places, it may not have been submitted successfully. Please resubmit through the Application Form page."""
+        ]
+    },
+
+    "saveAndContinue": {
+        "keywords": [
+            "save application", "save and continue", "complete later",
+            "save progress", "continue later", "partial save",
+            "draft application", "save for later", "pause application"
+        ],
+        "responses": [
+            """**Currently, the system does NOT have an automatic save/draft feature**. However, here's how to manage your application:
+
+**Best Practices:**
+
+1. **Prepare All Information Before Starting**
+   • Keep all documents ready
+   • Have student and parent details written down
+   • Prepare student photo (JPG/PNG, max 2MB)
+   • Note down Aadhaar number, email, phone numbers
+
+2. **Complete in One Session**
+   • The Application Form should be completed in one sitting
+   • Most users complete it in 15-20 minutes
+   • Do not close the browser until submitted
+
+3. **If You Must Stop Midway**
+   • Keep your browser tab open (don't close)
+   • Note down what you've filled so far
+   • Most modern browsers retain form data temporarily
+   • Return and complete as soon as possible
+
+4. **After Submission**
+   • Once submitted, you can verify in Registration page
+   • No further editing is typically allowed
+   • Contact school admin for changes
+
+**Important:** Fill the form carefully in one session to avoid losing data. Once submitted, the Health Form also needs immediate completion.""",
+            """The application system **does not have a save-as-draft feature**, so you need to complete and submit in one session.
+
+**Recommended Approach:**
+
+**Before Starting:**
+✓ Gather all required information
+✓ Keep documents ready for upload
+✓ Allocate 20-30 minutes uninterrupted time
+
+**During Application:**
+✓ Fill all sections carefully
+✓ Keep browser tab open
+✓ Don't refresh the page unnecessarily
+✓ Complete and submit without closing browser
+
+**After Submission:**
+✓ Application is saved permanently
+✓ View in Registration page anytime
+✓ Cannot be edited (contact admin for changes)
+
+**Tip:** If you're unsure about any information, gather it first before starting the application. This ensures smooth, one-time completion without losing data."""
+        ]
+    },
+
+    "noConfirmationEmail": {
+        "keywords": [
+            "no email", "didn't receive email", "no confirmation email",
+            "confirmation email", "email not received", "missing email",
+            "no mail", "email issue", "didn't get confirmation"
+        ],
+        "responses": [
+            """If you haven't received a confirmation email after applying, follow these steps:
+
+**Immediate Actions:**
+
+1. **Check Spam/Junk Folder**
+   • Confirmation emails often land in spam
+   • Check promotions folder (Gmail)
+   • Mark as "Not Spam" if found
+
+2. **Verify in Portal Directly**
+   • Don't rely only on email
+   • Log into the pre-admission portal
+   • Go to **Registration Page** to see your application
+   • Check **Preadmission Status** - should show "Application Waiting"
+
+3. **Check Email Address**
+   • Go to Registration page
+   • Verify the email address you entered
+   • If incorrect, contact school admin for update
+
+**Portal is Your Primary Source:**
+📱 **Registration Page** - View complete application
+📱 **Document View** - See submitted form
+📱 **Preadmission Status** - Track progress
+
+**Still No Email?**
+• Email confirmations are optional notifications
+• Your application is valid if visible in portal
+• Contact school admin with your application details
+• Provide student name, class, and application date
+
+**Important:** Always verify submission through the portal, not just email. The portal is the official record.""",
+            """No confirmation email? Here's what to do:
+
+**First, Don't Worry!**
+• Email confirmations are supplementary
+• The portal is the official record
+• Your application is valid if it appears in the portal
+
+**Verify Your Submission:**
+
+1. **Check Registration Page**
+   • Go to Registration section
+   • Select academic year and class
+   • Your application should be visible
+
+2. **Check Preadmission Status**
+   • Application Status should show "Application Waiting"
+   • This confirms successful submission
+
+3. **Check Email Folders**
+   • Spam/Junk folder
+   • Promotions tab (Gmail)
+   • Social/Updates folders
+
+**Email Not Critical:**
+• Portal shows real-time status
+• No email doesn't mean unsuccessful submission
+• Always check portal for official status
+
+**Need Help?**
+• Contact school administration
+• Provide student name and class
+• They can verify your application status
+• Request email address update if needed
+
+**Remember:** The portal (Registration page and Preadmission Status) is your primary source of truth, not email."""
+        ]
+    },
+
+    "noInternetAccess": {
+        "keywords": [
+            "no internet", "without internet", "offline application",
+            "no wifi", "internet access", "no connection",
+            "offline admission", "apply offline", "without online"
+        ],
+        "responses": [
+            """If you don't have internet access, here are your options:
+
+**Alternative Ways to Apply:**
+
+1. **Visit School Physically**
+   • Go to the school admission office
+   • Fill paper-based application form
+   • Submit documents in person
+   • Staff will help you with the process
+
+2. **Use Public Internet Facilities**
+   • Public libraries often have free internet
+   • Cyber cafes/Internet centers
+   • Community centers with computer access
+   • Government e-seva centers
+
+3. **Use Mobile Data**
+   • The portal is mobile-friendly
+   • Can be accessed via smartphone with mobile data
+   • Minimal data usage required
+
+4. **Ask School for Assistance**
+   • Contact school admission office via phone
+   • Ask about offline application facility
+   • They may arrange computer access at school
+   • Schedule an appointment for assisted application
+
+**What You'll Need:**
+• Student's complete details
+• Parent/guardian information
+• Student photograph
+• Required documents/certificates
+
+**Contact School:**
+Call the admission office to discuss offline alternatives. Many schools accommodate applicants without internet access.""",
+            """Applying without internet access - Your options:
+
+**Option 1: Visit School Campus**
+• Walk-in to admission office during office hours
+• Fill physical application form
+• Submit documents in person
+• Staff will assist you throughout
+
+**Option 2: Use Community Internet**
+• Public library computers (usually free)
+• Internet/Cyber cafes
+• Community centers
+• Friend's or relative's internet connection
+
+**Option 3: Mobile Phone Application**
+• Use mobile data on smartphone
+• Portal works on mobile browsers
+• Requires minimal data
+• Can complete entire application on phone
+
+**Option 4: Seek School Assistance**
+• Call admission office: [school phone number]
+• Explain your situation
+• Ask for offline application form
+• Request computer access at school premises
+
+**Best Approach:**
+Contact the school administration first. They understand that not everyone has internet access and will provide alternative methods. The admission process should be accessible to all applicants.
+
+**Note:** Some schools also accept postal applications in special cases."""
+        ]
+    },
+
+    "applicationFee": {
+        "keywords": [
+            "application fee", "admission fee", "fee", "cost",
+            "charges", "payment", "how much", "pay fee",
+            "fee amount", "registration fee", "processing fee"
+        ],
+        "responses": [
+            """Regarding application and admission fees:
+
+**Where to Find Fee Information:**
+
+1. **Application Form Page**
+   • Fee amount (if applicable) is displayed during form filling
+   • Some schools charge application processing fee
+
+2. **Prospectus Report**
+   • Download from Reports section
+   • Contains complete fee structure
+   • Application fee vs. admission fee breakdown
+
+3. **Registration Stage**
+   • Fee payment link appears after application submission
+   • Amount clearly displayed before payment
+
+**Payment Methods:**
+
+💳 **Online Payment Options:**
+• Credit/Debit Card
+• Net Banking
+• UPI (GPay, PhonePe, Paytm)
+• Digital Wallets
+
+**Payment Process:**
+1. Submit Application Form
+2. Fee payment link/button appears
+3. Select payment method
+4. Complete transaction securely
+5. Download payment receipt immediately
+
+**After Payment:**
+✓ Download receipt from portal
+✓ Save receipt for records
+✓ Check Preadmission Status for payment confirmation
+✓ Access payment history in Reports section
+
+**Important Notes:**
+• Application fee is generally non-refundable
+• Keep payment receipt for future reference
+• Different fees at different stages (application vs. admission confirmation)
+• Contact school for fee waiver queries (if applicable)
+
+**Fee Not Showing?** 
+Check the portal homepage or contact school administration for current fee structure.""",
+            """Application Fee Information:
+
+**Is There a Fee?**
+• Most schools charge an application processing fee
+• Fee amount varies by institution
+• Check during application form submission
+
+**How to Pay:**
+
+**Step 1: Submit Application**
+• Complete Application Form
+• Payment option appears after submission
+
+**Step 2: Choose Payment Method**
+• Online payment gateway opens
+• Options: Card/Net Banking/UPI/Wallet
+• Secure payment processing
+
+**Step 3: Confirm Payment**
+• Transaction confirmation appears
+• Download payment receipt immediately
+• Receipt also available in Reports section
+
+**Fee Stages:**
+
+1. **Application Fee** - Paid when submitting application form
+2. **Admission Fee** - Paid after selection/confirmation (if applicable)
+3. **Other Fees** - Detailed in prospectus
+
+**Important:**
+• Fee is non-refundable typically
+• Always download and save receipt
+• Check Preadmission Status for payment confirmation
+• Contact school for exact fee amount and payment deadlines
+
+**Fee Waivers:**
+Some schools offer fee waivers for economically disadvantaged families. Contact admission office to inquire."""
+        ]
+    },
+
+    # EXISTING SECTIONS (keeping all previous ones)
     "applicationFormDetails": {
         "keywords": [
             "application form", "fill application", "student details", 
@@ -53,7 +661,6 @@ You also need to upload the student photo. After filling all mandatory fields, c
         ]
     },
     
-    # HEALTH FORM
     "healthForm": {
         "keywords": [
             "health form", "health details", "medical", "chronic disease", "next application","after submitting application form"
@@ -72,7 +679,6 @@ Click Submit after completing all health details.""",
         ]
     },
 
-    # PARENT DETAILS
     "parentDetails": {
         "keywords": [
             "parent details", "father", "mother", "guardian", 
@@ -84,36 +690,30 @@ Click Submit after completing all health details.""",
         ]
     },
 
-    # DOCUMENT UPLOAD
     "documentUpload": {
         "keywords": [
             "upload", "document upload", "photo upload", "student photo", 
             "upload picture", "how to upload","where to upload"
         ],
         "responses": [
-            """To upload the relevnt documents, click on "Upload Document" button on the bottom side of the Document upload details section in the Application Form. Supported formats are JPG, PNG with maximum size of 2MB. Make sure the photo and other documents are clear""",
-            
+            """To upload the relevant documents, click on "Upload Document" button on the bottom side of the Document upload details section in the Application Form. Supported formats are JPG, PNG with maximum size of 2MB. Make sure the photo and other documents are clear""",
         ]
     },
 
-    # REGISTRATION PAGE
     "registration": {
         "keywords": [
             "registration", "register", "verify details", "check details", 
-            "review application", "registration page", "registration", "register", "verify details", "check details", 
-        "review application", "registration page", "where to verify","application form submitted","health form submitted",
-        "how to verify", "verify application", "verification","confirm registration","after submitting application form and health form","after submittig application form",
-        "where can i check", "where do i review", "review my form",
-        "see my application", "look at my details", "confirm details"
+            "review application", "registration page", "where to verify","application form submitted","health form submitted",
+            "how to verify", "verify application", "verification","confirm registration","after submitting application form and health form","after submittig application form",
+            "where can i check", "where do i review", "review my form",
+            "see my application", "look at my details", "confirm details"
         ],
-        
         "responses": [
             """The Registration page is found under the Application Form section. Here you can view and verify all the details you entered in the Application Form including student information, parent details, and uploaded documents. Review everything carefully before proceeding.""",
             """After completing the Application and Health forms, go to the Registration page to verify all entered details. This page displays your complete application for review including personal details, address, parent information, and documents. Make sure everything is correct."""
         ]
     },
 
-    # DOCUMENT VIEW
     "documentView": {
         "keywords": [
             "document view", "view documents", "check documents", 
@@ -125,7 +725,6 @@ Click Submit after completing all health details.""",
         ]
     },
 
-    # INTERVIEW SCHEDULE
     "interviewSchedule": {
         "keywords": [
             "interview", "interview schedule", "oral test", "written test", 
@@ -134,15 +733,14 @@ Click Submit after completing all health details.""",
         "responses": [
             """Interview Schedule has two sections:
 
-            1. Oral Test Schedule - Check your oral interview date, time, and venue
-            2. Written Test Schedule - Check your written exam date, time, and venue
+1. Oral Test Schedule - Check your oral interview date, time, and venue
+2. Written Test Schedule - Check your written exam date, time, and venue
 
-            Both schedules will be assigned after your application is reviewed. Check regularly for updates.""",
+Both schedules will be assigned after your application is reviewed. Check regularly for updates.""",
             """The Interview Schedule section contains your Oral Test Schedule and Written Test Schedule. Once your application is processed, you'll see your assigned dates, times, and venues for both tests here. Make sure to arrive 15 minutes early with required documents."""
         ]
     },
 
-    # ORAL TEST
     "oralTest": {
         "keywords": [
             "oral test", "oral interview", "oral exam", 
@@ -154,7 +752,6 @@ Click Submit after completing all health details.""",
         ]
     },
 
-    # WRITTEN TEST
     "writtenTest": {
         "keywords": [
             "written test", "written exam", "entrance test", 
@@ -166,7 +763,6 @@ Click Submit after completing all health details.""",
         ]
     },
 
-    # MARKS ENTRY
     "marksEntry": {
         "keywords": [
             "marks entry", "enter marks", "scores", "test results", 
@@ -183,7 +779,6 @@ This section is typically filled by the school after you complete both tests. Yo
         ]
     },
 
-    # PREADMISSION STATUS
     "preadmissionStatus": {
         "keywords": [
             "status", "application status", "admission status", 
@@ -209,7 +804,6 @@ Check this regularly for updates!""",
         ]
     },
 
-    # APPLICATION STATUS
     "applicationStatus": {
         "keywords": [
             "application waiting", "application rejected", 
@@ -227,7 +821,6 @@ Once accepted, check the Admission Status section.""",
         ]
     },
 
-    # ADMISSION STATUS
     "admissionStatus": {
         "keywords": [
             "admission status", "in progress", "selected", "confirmed", 
@@ -240,6 +833,7 @@ Once accepted, check the Admission Status section.""",
 • Selected - You're selected for admission
 • Rejected - Not selected for admission
 • Confirmed - Your admission is CONFIRMED! Next step: go to Transfer Student page
+
 
 Once Confirmed, you'll appear in the Transfer Pre Admission to Admission page.""",
             """After your application is accepted, monitor the Admission Status section. "In Progress" means you're being evaluated through tests and verification. "Selected" means you made it! "Confirmed" is the final stage - your seat is secured. Students with Confirmed status will appear in the Transfer Student section."""
@@ -1328,5 +1922,4 @@ def chat_api():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5001)
-
+    app.run(debug=True, port=5000)
